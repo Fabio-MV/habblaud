@@ -9,11 +9,12 @@
 // Os textos de atividade são montados pelo servidor, então seguem o idioma do servidor.
 import { DICTIONARIES } from './locales/all';
 
-export type Locale = 'pt-BR' | 'en' | 'es' | 'fr';
+export type Locale = 'pt-BR' | 'pt-PT' | 'en' | 'es' | 'fr';
 
 /** Na ordem do seletor; o nome de cada idioma vai na própria língua, para quem não entende o idioma atual. */
 export const LOCALES: { id: Locale; name: string }[] = [
-  { id: 'pt-BR', name: 'Português' },
+  { id: 'pt-BR', name: 'Português (Brasil)' },
+  { id: 'pt-PT', name: 'Português (Portugal)' },
   { id: 'en', name: 'English' },
   { id: 'es', name: 'Español' },
   { id: 'fr', name: 'Français' },
@@ -30,11 +31,12 @@ export function registerDictionary(l: Locale, dict: Readonly<Record<string, stri
   DICTS[l] = dict;
 }
 
-/** "fr-FR", "fr_CA.UTF-8", "pt", "pt_BR"... -> idioma suportado; undefined se não for nenhum deles. */
+/** "fr-FR", "fr_CA.UTF-8", "pt", "pt_BR", "pt_PT"... -> idioma suportado; undefined se não for nenhum deles. */
 export function normalizeLocale(v: string | null | undefined): Locale | undefined {
   const s = (v ?? '').trim().toLowerCase().replace('_', '-');
   if (!s) return undefined;
   if (s === 'fr' || s.startsWith('fr-')) return 'fr';
+  if (s === 'pt-pt' || s.startsWith('pt-pt.') || s.startsWith('pt-pt@')) return 'pt-PT';
   if (s === 'pt' || s.startsWith('pt-')) return 'pt-BR';
   if (s === 'en' || s.startsWith('en-')) return 'en';
   if (s === 'es' || s.startsWith('es-')) return 'es';
@@ -113,5 +115,5 @@ export function tr(src: string, args?: readonly unknown[]): string {
 
 /** Idioma no formato do Intl (datas, números). */
 export function intlLocale(): string {
-  return current === 'fr' ? 'fr-FR' : current === 'en' ? 'en-US' : current === 'es' ? 'es' : 'pt-BR';
+  return current === 'fr' ? 'fr-FR' : current === 'en' ? 'en-US' : current === 'es' ? 'es' : current === 'pt-PT' ? 'pt-PT' : 'pt-BR';
 }

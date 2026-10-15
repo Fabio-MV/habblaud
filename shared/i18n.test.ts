@@ -18,7 +18,10 @@ describe('i18n', () => {
     expect(normalizeLocale('fr-CA')).toBe('fr');
     expect(normalizeLocale('fr_FR.UTF-8')).toBe('fr');
     expect(normalizeLocale('pt')).toBe('pt-BR');
-    expect(normalizeLocale('pt_PT')).toBe('pt-BR');
+    expect(normalizeLocale('pt_BR')).toBe('pt-BR');
+    expect(normalizeLocale('pt_PT')).toBe('pt-PT');
+    expect(normalizeLocale('pt-PT')).toBe('pt-PT');
+    expect(normalizeLocale('pt_PT.UTF-8')).toBe('pt-PT');
     expect(normalizeLocale('en-US')).toBe('en');
     expect(normalizeLocale('es_AR.UTF-8')).toBe('es');
     expect(normalizeLocale('de-DE')).toBeUndefined();

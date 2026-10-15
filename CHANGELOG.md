@@ -10,6 +10,18 @@ do meio (0.**3**.0).
 
 ## [Não lançado]
 
+## [0.11.0-pt-PT] - 2026-10-15
+
+A 0.11.0 com a interface também em português europeu. Para o servidor (atividades, avisos, logs) falar pt-PT
+num sistema que não está em pt-PT: `HABBLAUD_LANG=pt-PT`.
+
+### Adicionado
+
+- **Português (Portugal):** novo idioma em **Configurações › Idioma**, com todos os textos traduzidos e o tratamento
+  por «tu» (`shared/locales/pt-PT.ts`). É escolhido sozinho quando o navegador ou o sistema está em `pt-PT`/`pt_PT`;
+  as datas seguem o formato português. O português do Brasil continua sendo a língua de origem e passa a aparecer
+  como "Português (Brasil)" no seletor.
+
 ## [0.11.0] - 2026-10-13
 
 Para atualizar: `git pull` e `npm run docker:up` (ele também atualiza o mod do Habblaud nas contas). O acesso pelo
