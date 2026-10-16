@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { getLocale, intlLocale, normalizeLocale, serverLocale, setLocale, tr } from './i18n';
+import { getLocale, intlLocale, normalizeLocale, serverLocale, setLocale, tr, worldLocale } from './i18n';
 import { EN } from './locales/en';
 import { ES } from './locales/es';
 import { FR } from './locales/fr';
@@ -11,6 +11,13 @@ describe('i18n', () => {
 
   it('os testes rodam em PT, qualquer que seja o idioma da máquina', () => {
     expect(getLocale()).toBe('pt-BR');
+  });
+
+  it('o Habblaud World recebe pt-BR no lugar do pt-PT, que ele não conhece', () => {
+    setLocale('pt-PT');
+    expect(worldLocale()).toBe('pt-BR');
+    setLocale('fr');
+    expect(worldLocale()).toBe('fr');
   });
 
   it('reconhece os formatos de idioma do navegador e do sistema', () => {

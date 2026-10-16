@@ -113,6 +113,14 @@ export function tr(src: string, args?: readonly unknown[]): string {
   return s.replace(/\{(\d+)\}/g, (m, i: string) => (Number(i) < args.length ? String(args[Number(i)]) : m));
 }
 
+/**
+ * Idioma enviado ao Habblaud World (registo e ligação do prédio). O servidor do mundo só conhece pt-BR, en, es e fr:
+ * o pt-PT, que só existe localmente, vai como pt-BR.
+ */
+export function worldLocale(): Exclude<Locale, 'pt-PT'> {
+  return current === 'pt-PT' ? 'pt-BR' : current;
+}
+
 /** Idioma no formato do Intl (datas, números). */
 export function intlLocale(): string {
   return current === 'fr' ? 'fr-FR' : current === 'en' ? 'en-US' : current === 'es' ? 'es' : current === 'pt-PT' ? 'pt-PT' : 'pt-BR';
